@@ -109,23 +109,19 @@ Standard MIDI został stworzony w roku 1983 i znacznie ułatwił pracę z syntez
 W przeciwieństwie do innych formatów audio (jak .flac lub .wav) format MIDI sam w sobie nie przechowuje dźwięku, zawiera jedynie instrukcje jak dany dźwięk zrekonstruować, Jest swoistym rodzajem \textit{cyfrowej pięciolinii} \citep[s. 1 - 2]{MIDI_Format}.
 Protokół MIDI pozwala na wysłanie informacji przez maksymalnie 16 różnych kanałów, co pozwala na jednoczesną grę do 16 różnych instrumentów. Można powiedzieć, że standard MIDI specyfikuje zarówno wymagania wstępne względem typu urządzenia mającego odtwarzać dźwięk jak i sam protokół transmisji, podług którego mają być wysyłane wiadomości w standardzie MIDI. Struktura pliku MIDI została pokazana na rysunku 12 \citep[s. 1 - 2]{MIDI_Format}.
 
-\begin{figure}[H]\includegraphics[scale=0.8]{MIDI_file.png}
-\begin{center}
-\caption{Struktura pliku MIDI. Plik MIDI składa się z tzw. \textit{eventów}, które zawierają informacje o treści wiadomości MIDI oraz o czasie jej nadania. Źródło: \citep[s. 2 - 3]{MIDI_Format} i \citep{Tse2008}.}
+\begin{figure}[H]\includegraphics[scale=0.6]{MIDI_file.png}
 \centering
-\end{center}
+\caption{Struktura pliku MIDI. Plik MIDI składa się z tzw. \textit{eventów}, które zawierają informacje o treści wiadomości MIDI oraz o czasie jej nadania. Źródło: \citep[s. 2 - 3]{MIDI_Format} i \citep{Tse2008}.}
 \end{figure}
 
 Aby skorzystać z możliwości jakie daje nam MIDI należy zaopatrzyć się w instrumenty. Instrumenty mogą być dystrybuowane niezależnie jako pakiety \textit{VSTi} dołączane oddzielnie do \textit{syntezatora programowego} takiego jak \textit{Helm} (zob. rys. 16)
 Do tworzenia muzyki w formacie MIDI można wykorzystać także \textit{syntezator sprzętowy} taki jak \textit{klawiatura MIDI} Klawiatura jest rodzajem kontrolera wysyłającego sygnały elektryczne w formacie MIDI, które sam protokół interpretuje i odtwarza jako dźwięk. Przykład takiej klawiatury to rysunek 17. warto zwrócić uwagę na to, że każdej nucie na klawiaturze przyporządkowany jest odpowiadający mu numer kodu formatu MIDI.
 
 \begin{figure}[H]
-\begin{center}
+\centering
 \includegraphics[scale = 0.35]{helm.png}
 \centering
 \caption{Interfejs programu Helm. Źródło: https://tytel.org/helm/}
-\centering
-\end{center}
 \end{figure}
 
 
