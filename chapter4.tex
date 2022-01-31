@@ -20,7 +20,7 @@ W analogiczny sposób można rozpisać dowolną gamę jako wektor wartości z kt
 
 
 
-\section{Zadanie klasyfikacji dźwięków}
+\section{Implementacja zadania klasyfikacji dźwięków}
 
 Stworzona w języku \textit{Haskell} biblioteka \textit{Euterpea}\footnote{https://www.euterpea.com/} pozwala w prosty sposób generować utwory muzyczne. Wykorzystuję się ją szeroko w muzyce algorytmicznej, analizie muzyki i syntezie dźwięku.
 
@@ -97,7 +97,7 @@ Klasyfikacje możemy przeprowadzić na dwa sposoby:
     \item Na podstawie mierzalnych cech, które opisują utwór muzyczny. W tym wypadku skupimy się na \textit{rytmie}.
 \end{itemize}
 
-\subsection{Klasyfikacja na podstawie podobieństwa dźwięków}
+\subsection{4.2 Klasyfikacja na podstawie podobieństwa dźwięków}
 Mając dane dwa wektory $v$ i $u$, sprawdźmy, czy wektor $x$ jest bardziej podobny do muzyki ludowej ($C_{1}$), reprezentowanej przez wektor $v$, czy do muzyki jazzowej ($C_{2}$), reprezentowanej przez $u$. 
 
 \begin{equation*}
@@ -164,7 +164,7 @@ Jeśli, $\big \langle y|x \big \rangle < w_{0}$, to $f(x) = -1$, a to oznacza pr
 
 Klasyfikator uznał zatem, że dźwięki w wektorze $x$ są bardziej podobne do tych w wektorze $u$. Bluesowy utwór \textit{The Entertainer} został uznany za bardziej podobny do jazzu niż do muzyki ludowej, co raczej zgadza się z powszechną intuicją Ten sposób klasyfikacji nie jest optymalny, ponieważ pomija wszystkie inne cechy utworu, takie jak \textit{rytm}. W kolejnym podrozdziale pokażemy jak można rozwiązać ten problem i zamodelujemy klasyfikacje na podstawie rytmu.
 
-\subsection{Modelowanie binarne typu cisza - dźwięk}
+\section{Modelowanie binarne typu cisza - dźwięk}
 
 Sposobem na klasyfikacje utworów względem ich rytmu jest takie zamodelowanie wektora wejściowego nut, gdzie do każdej wartości dźwiękowej, (nie będącej pauzą), przyporządkowujemy wartość 1, a każdej wartości będącej pauzą przyporządkowujemy wartość 0. Przyporządkowanie to zawsze działa w taki sam sposób, niezależnie od tego jakiej długości jest dana nuta, czy pauza. Prosty przykład jak miałoby to wyglądać został przedstawiony na rys. 20.
 
@@ -224,7 +224,7 @@ Stąd:
 A to również oznacza przydział do klasy $C_{2}$.
 Zatem klasyfikując na podstawie rytmu program ponownie uznał, że bluesowy utwór \textit{The Entertainer} brzmi bardziej jazzowo niż ludowo.
 
-\section{Procedura testowa}
+\subsection{4.4 Procedura testowa}
 Na podstawie powyżej opisanych dwóch metod przeprowadzono testy dla większej ilości utworów. Przebieg procedury testowania był następujący:
 \begin{enumerate}
     \item Wygenerowanie losowego wektora $x$,
@@ -248,7 +248,9 @@ floatList (n:ns)  = (x) : floatList(ns)
 Testy przeprowadzono w dwóch wariantach. W wariancie pierwszym (A) porównywano wektor wzorcowy danego typu muzyki (ludowej bądź jazzowej), z innym utworem z tego samego gatunku muzyki. Przykłady zostały pobrane z seriwsu \textit{MuseScore} lub z \textit{Instytutu im. Oskara Kolberga}, odpowiednio 5 utworów muzyki ludowej lub jazzowej. W wariancie (B) wektory wzorcowe były porównywane z losowo wygenerowanym innym wektorem, żeby sprawdzić jakie decyzje podejmuje algorytm dla losowo wygenerowanych sekwencji dźwięków. 
 
 \subsection{(A) Porównywanie utworu wzorcowego z innym utworem}
-\begin{table}
+\FloatBarrier
+\begin{table}[h]
+\centering
 \begin{tabular}{|c|c|c|}
 \hline
 Lp. & $X_{input}$ & $X_{output}$ \\ \hline
@@ -263,10 +265,9 @@ Lp. & $X_{input}$ & $X_{output}$ \\ \hline
 9.   & $C_{2}$      & $C_{1}$     \\ \hline
 10.  & $C_{2}$      & $C_{2}$      \\ \hline
 \end{tabular}
-\centering
 \caption{Wyniki klasyfikacji na podstawie podobieństwa dźwięków. Źródło: Opracowanie własne.}
-\label{tabela 1}
 \end{table}
+\FloatBarrier
 
 \textbf{Podsumowanie:}
 Wyniki klasyfikacji na podstawie podobieństwa dźwięków kształtują się następująco:
@@ -277,9 +278,8 @@ Wyniki klasyfikacji na podstawie podobieństwa dźwięków kształtują się nas
 \end{enumerate}
 
 \textbf{Łącznie dla 10 przypadków, 7 razy dokonano poprawnej klasyfikacji (70\% dokładności)}.
-
-
-\begin{table}
+\FloatBarrier
+\begin{table}[h]
 \begin{tabular}{|c|c|c|}
 \hline
 Lp. & $X_{input}$ & $X_{output}$ \\ \hline
@@ -296,8 +296,8 @@ Lp. & $X_{input}$ & $X_{output}$ \\ \hline
 \end{tabular}
 \centering
 \caption{Wyniki klasyfikacji na podstawie podobieństwa rytmu. Źródło: Opracowanie własne.}
-\label{tabela 2}
 \end{table}
+\FloatBarrier
 
 \textbf{Podsumowanie:}
 Wyniki klasyfikacji na podstawie podobieństwa rytmu kształtują się następująco:
@@ -336,26 +336,26 @@ randomBin n = do
 \end{lstlisting}
 
 Funkcja \textit{randomFloat} generuje wektor wartości dźwiękowych o dowolnej długości, zakres losowania zmieniał się co iteracje i został ustalony na przedział 20 - 108, co odpowiada zakresowi wartości formatu \textit{MIDI}. Funkcja \textit{randomBin} generuje wektor złożony z zer i jedynek, również o dowolnej długości.
-
-% \begin{table}
-% \begin{tabular}{|c|c|c|}
-% \hline
-% Lp. & $X_{input}$ & $X_{output}$ \\ \hline
-% 1.   & $C_{1}$      & $C_{1}$      \\ \hline
-% 2.   & $C_{1}$      & $C_{2}$     \\ \hline
-% 3.   & $C_{1}$      & $C_{1}$      \\ \hline
-% 4.   & $C_{1}$      & $C_{1}$     \\ \hline
-% 5.   & $C_{1}$      & $C_{1}$      \\ \hline
-% 6.   & $C_{2}$      & $C_{1}$    \\ \hline
-% 7.   & $C_{2}$      & $C_{2}$     \\ \hline
-% 8.   & $C_{2}$      & $C_{2}$     \\ \hline
-% 9.   & $C_{2}$      & $C_{2}$     \\ \hline
-% 10.  & $C_{2}$      & $C_{1}$      \\ \hline
-% \end{tabular}
-% \centering
-% \caption{Wyniki klasyfikacji na podstawie podobieństwa dźwięków dla wektorów losowych. Źródło: Opracowanie własne.}
-\label{tabela 3}
-% \end{table}
+\FloatBarrier
+\begin{table}[h]
+\begin{tabular}{|c|c|c|}
+\hline
+Lp. & $X_{input}$ & $X_{output}$ \\ \hline
+1.   & $C_{1}$      & $C_{1}$      \\ \hline
+2.   & $C_{1}$      & $C_{2}$     \\ \hline
+3.   & $C_{1}$      & $C_{1}$      \\ \hline
+4.   & $C_{1}$      & $C_{1}$     \\ \hline
+5.   & $C_{1}$      & $C_{1}$      \\ \hline
+6.   & $C_{2}$      & $C_{1}$    \\ \hline
+7.   & $C_{2}$      & $C_{2}$     \\ \hline
+8.   & $C_{2}$      & $C_{2}$     \\ \hline
+9.   & $C_{2}$      & $C_{2}$     \\ \hline
+10.  & $C_{2}$      & $C_{1}$      \\ \hline
+\end{tabular}
+\centering
+\caption{Wyniki klasyfikacji na podstawie podobieństwa dźwięków dla wektorów losowych. Źródło: Opracowanie własne.}
+\end{table}
+\FloatBarrier
 
 \textbf{Podsumowanie:}
 Wyniki klasyfikacji na podstawie podobieństwa rytmu kształtują się następująco:
@@ -366,34 +366,37 @@ Wyniki klasyfikacji na podstawie podobieństwa rytmu kształtują się następuj
 \end{enumerate}
 
 \textbf{Łącznie dla 10 przypadków, 7 razy dokonano poprawnej klasyfikacji (70\% dokładności)}.
-
-\begin{table}
+\FloatBarrier
+\begin{table}[h]
 \begin{tabular}{|c|c|c|}
 \hline
- Lp. & $X_{input}$ & $X_{output}$ \\ \hline
- 1.   & $C_{1}$      & $C_{1}$      \\ \hline
- 2.   & $C_{1}$      & $C_{2}$     \\ \hline
- 3.   & $C_{1}$      & $C_{2}$      \\ \hline
- 4.   & $C_{1}$      & $C_{2}$     \\ \hline
- 5.   & $C_{1}$      & $C_{2}$      \\ \hline
- 6.   & $C_{2}$      & $C_{2}$    \\ \hline
- 7.   & $C_{2}$      & $C_{2}$     \\ \hline
- 8.   & $C_{2}$      & $C_{1}$     \\ \hline
- 9.   & $C_{2}$      & $C_{1}$     \\ \hline
- 10.  & $C_{2}$      & $C_{2}$      \\ \hline
- \end{tabular}
- \centering
- \caption{Wyniki klasyfikacji na podstawie podobieństwa rytmu dla wektorów losowych. Źródło: Opracowanie własne.}
-\label{tabela 4}
- \end{table}
- \textbf{Podsumowanie:}
- Wyniki klasyfikacji na podstawie podobieństwa rytmu kształtują się następująco:
+Lp. & $X_{input}$ & $X_{output}$ \\ \hline
+1.   & $C_{1}$      & $C_{1}$      \\ \hline
+2.   & $C_{1}$      & $C_{2}$     \\ \hline
+3.   & $C_{1}$      & $C_{2}$      \\ \hline
+4.   & $C_{1}$      & $C_{2}$     \\ \hline
+5.   & $C_{1}$      & $C_{2}$      \\ \hline
+6.   & $C_{2}$      & $C_{2}$    \\ \hline
+7.   & $C_{2}$      & $C_{2}$     \\ \hline
+8.   & $C_{2}$      & $C_{1}$     \\ \hline
+9.   & $C_{2}$      & $C_{1}$     \\ \hline
+10.  & $C_{2}$      & $C_{2}$      \\ \hline
+\end{tabular}
+\centering
+\caption{Wyniki klasyfikacji na podstawie podobieństwa rytmu dla wektorów losowych. Źródło: Opracowanie własne.}
+\end{table}
+\FloatBarrier
+
+\textbf{Podsumowanie:}
+Wyniki klasyfikacji na podstawie podobieństwa rytmu kształtują się następująco:
 
 \begin{enumerate}
     \item Dla muzyki ludowej klasyfikator osiągnął 10\% dokładności (4 z 5 utworów zaklasyfikowano źle)
     \item Dla muzyki jazzowej klasyfikator osiągnął 40\% dokładności (3 z 5 utworów zaklasyfikowano źle)
 \end{enumerate}
+
 \textbf{Łącznie dla 10 przypadków, 3 razy dokonano poprawnej klasyfikacji (30\% dokładności)}.
 
 \section{Wnioski}
+
 Najlepsze wyniki klasyfikacji osiągnięto podczas testowania na utworach rzeczywistych. Algorytm osiągał porównywalnie gorsze wyniki w wariancie z utworami generowanymi losowo. Klasyfikacja na podstawie podobieństwa dźwięków osiągała gorsze wyniki niż klasyfikacja na podstawie rytmu dla utworów rzeczywistych, ale jej skuteczność znacznie się pogorszyła dla utworów generowanych losowo, co może oznaczać, że algorytm klasyfikacji faktycznie dobrze wykrywa rytm melodii. Głównym wnioskiem płynącym z badań jest teza, że klasyfikacja na podstawie rytmu jest dokładniejsza, ale żeby ją potwierdzić, bądź odrzucić należało by wykonać testy dla większej ilości przypadków testowych.
