@@ -1,0 +1,236 @@
+\chapter{Podstawy aparatu matematycznego algebry liniowej}
+
+Nasze rozważania na temat modelowania dzieła muzycznego należy rozpocząć od zdefiniowania problemu w sposób formalny i wprowadzeniu podstawowych pojęć z zakresu niezbędnego aparatu matematycznego używanego do opisu i projektowania sieci neuronowych oraz do wprowadzenia pewnych podstawowych pojęć z zakresu teorii muzyki, których zdefiniowanie jest konieczne w celu prowadzenia dalszych rozważań. Realizacji tych dwóch zadań są poświęcone następne dwa rozdziały niniejszej pracy.
+
+\section{Grupa abelowa}
+\begin{definicja}
+Niech V będzie niepustym zbiorem wraz z zdefiniowanym działaniem wewnętrznym +. Zbiór $(V,+)$ jest \textbf{grupą abelową} jeśli spełnia on poniższe warunki\footnote{Za: \url{http://en.math.uni.lodz.pl/~wiertelak/Temat20.pdf}}:
+\end{definicja}
+
+\begin{equation*}
+ \forall_{u,w,v \in V} \quad (u + w) + v = u + (w + v) \quad \text{(łączność)}
+\end{equation*}
+
+\begin{equation*}
+ \exists_{e \in V}, \quad \forall_{a \in V} \quad a  + e = e + a = a \quad \text{(element neutralny)}
+ \end{equation*}
+ 
+ \begin{equation*}
+     \exists_{a \in V}, \quad \forall_{a^{-1} \in V} \quad 
+     a + (-a) = e + (-a) + a = e \quad \text{(elementy odwrotne)}
+ \end{equation*}
+ 
+ a ponadto jeśli poniższe działanie jest przemienne to grupa jest grupą abelową.
+ 
+\begin{equation*}
+    \forall_{u,w \in V} \quad u + w = w + u
+\end{equation*}
+
+\section{Przestrzenie wektorowe}
+
+Czwórkę postaci (V;$\mathbb{R}$;+;$\cdot$), gdzie V jest zbiorem nad ciałem $\mathbb{R}$, + jest działaniem wewnętrznym w zbiorze V oraz $\cdot$ jest mnożeniem elementów zbioru V przez elementy ciała $\mathbb{R}$ nazywamy \textit{przestrzenią wektorową}, jeśli spełnione są następujące warunki:
+\begin{axioms}
+\item \label{} (V; +) jest grupą abelową,
+\item \label{item:L2} \quad $\bigwedge_{a \in R^{n}}, \bigwedge_{v, w \in V} \quad  a(v+w) = av +aw$,
+  
+  \item \label{item:L3} $\bigwedge_{a,b \in R^{n}}, \bigwedge_{v \in V} \quad  (a + b)v = av + bv$,
+  
+  \item \label{item:L4} $\bigwedge_{a,b \in R^{n}}, \bigwedge_{v \in V} \quad  a(bv) = (ab)v$, 
+  
+  \item \label{item:L5} $\bigwedge_{v \in V} \quad  1v = v$.
+  
+\end{axioms}
+
+Poszczególne elementy zbioru V nazywamy \textit{wektorami}, a elementy przestrzeni nad ciałem $\mathbb{R}$ nazywamy \textit{skalarami}. Zbiór wektorów V nazywamy \textit{rzeczywistą przestrzenią wektorową} \citep[s. 27]{Rutkowski_2008}.
+
+
+
+
+Zdefiniujmy zbiór wektorów V nad ciałem $\mathbb{R}$ gdzie, $v,w \in V$ i są one następującej postaci:
+\begin{equation*}
+V = \{v: v = [v_{1},\cdots, v_{n}], \quad v_{i} \in R, \quad i = 1,\cdots,n\}.
+\end{equation*}
+Dla $v,w \in V$ w zbiorze $v$ możemy następnie wprowadzić operacje dodawania:
+\begin{equation*}
+    v + w = [v_{1}, \cdots, v_{n}] + [w_{1}, \cdots, w_{1}] 
+    = [v_{1} + w_{1}, \cdots, v_{n} = w_{n}].
+\end{equation*}
+Oznaczmy
+\begin{equation*}
+    -v = -[v_{1},\cdots,v_{n}] = [-v_{1},\cdots,-v_{n}]
+\end{equation*}
+jako element przeciwny do wektora v. Mamy zatem
+\begin{equation*}
+    v + (-w) = [v_{1},\cdots,v_{n}] + [-w_{1},\cdots,-w_{n}]
+    = [v_{1}-w_{1},\cdots,v_{n}-w_{n}]
+\end{equation*}
+Definiujemy element neutralny dodawania $\Theta$ postaci:
+
+\begin{equation*}
+    \Theta = [0,\cdots,0]
+\end{equation*}
+Wprowadzimy operacje mnożenia wektora przez liczbę rzeczywistą $a \in \mathbb{R}$ (skalar) następującej postaci:
+\begin{equation*}
+a \cdot v = a[v_{1}, \cdots, v_{n}] = [av_{1},\cdots, av_{n}].
+\end{equation*}
+Zdefiniowany powyżej zbiór $V$ wraz z operacją dodawania wektorów tworzy grupę abelową, a wraz z mnożeniem przez skalar jest przestrzenią liniową nad $\mathbb{R}$.
+
+\section{Iloczyn skalarny i przestrzenie unitarne}
+
+\begin{definicja}\footnote{Definicje opracowano na podstawie: \citep[s. 198]{Rutkowski_2008}.}
+Niech V będzie przestrzenią wektorową nad ciałem $\mathbb{R}$. Iloczynem skalarnym w przestrzeni V nazywamy funkcję $\big \langle \cdot, \cdot \big \rangle$: V x V $\rightarrow \mathbb{R}$ spełniającą warunki:
+\\
+\begin{axioms}
+    \item $\bigwedge_{v,w \in V} \big \langle v, w \big \rangle = \overline{\big \langle v, w \big \rangle}$,
+    
+    \item $\bigwedge_{a,b \in R} \bigwedge_{v_{1},v_{2} \in V} \big \langle av_{1} + bv_{2}, w \big \rangle = a \big \langle v_{1}, w \big \rangle + b \big \langle v_{2}, w \big \rangle$,
+    \item $\bigwedge_{v \in V \backslash \{\theta\}} \big \langle v, v \big \rangle > 0$. 
+\end{axioms}
+\end{definicja}
+
+Przestrzenią unitarną nazywamy parę (V, $\big \langle \cdot, \cdot \big \rangle$), gdzie V jest przestrzenią wektorową, a $\big \langle \cdot, \cdot \big \rangle$ jest iloczynem skalarnym w przestrzeni V.
+Jeśli wiadomo jaki iloczyn skalarny został określony w przestrzeni V, to samą przestrzeń V nazywamy \textit{przestrzenią unitarną} \citep[s. 198-199]{Rutkowski_2008}.
+\newline
+Iloczyn skalarny ma następujące własności:
+\begin{axioms}
+\item $\bigwedge_{v \in V} \quad \big \langle v, \theta \big \rangle =  \big \langle \theta, v \big \rangle = 0$,
+
+\item $\bigwedge_{v \in V} \quad \big \langle v, v \big \rangle \geq 0$,
+\item $\bigwedge_{v,w_{1},w_{2} \in V} \quad \big \langle v, w_{1} + w_{2} \big \rangle =  \big \langle v, w_{1} \big \rangle + \big \langle v, w_{2} \big \rangle$,
+\item $\bigwedge_{a in R} \quad \bigwedge_{v, w \in V} \quad \big \langle v, aw \big \rangle = \overline{a} \big \langle v, w \big \rangle$.
+
+\end{axioms}
+
+\begin{definicja}
+Niech V będzie przestrzenią unitarną. Normą(długością) wektora $v \in V$ nazywamy liczbę rzeczywistą nieujemną $\sqrt{\big \langle v, v \big \rangle}$. Normę wektora v oznaczamy przez $\|v\|$. Wektor $v \in V$ nazywamy wektorem \textit{unormowanym}, jeżeli $\|v\| = 1$.
+\end{definicja}
+
+Jeśli V jest przestrzenią unitarną nad ciałem $R^{n}$, to dla dowolnie wybranych $a \in R$ i $v \in V$ zachodzi dodatkowo następująca równość:
+\begin{equation*}
+   \|av\| = |a| \ \|v\|
+\end{equation*}
+
+Dodatkowo, jeśli V jest przestrzenią unitarną, to dla dowolnych wektorów $v,w \in V$ zachodzą ponadto nierówności:
+\begin{figure}[H]
+\begin{equation*}
+    |\big \langle v, w \big \rangle| \ \leqq \ \|v\| \cdot \|w\| \quad \text{(nierówność Schwarza)}
+\end{equation*}
+
+\begin{equation*}
+    \|v + w\| \ \leqq \ \|v\| + \|w\| \quad \text{(nierówność Minkowskiego)}
+\end{equation*}
+
+\begin{equation*}
+    \Bigg| \|v\| - \|w\| \Bigg| \ \leqq \ \|v - w \|.
+\end{equation*}
+\end{figure}
+
+\section{Proste zadanie klasyfikacji}
+
+W tym podrozdziale przedstawimy rozumowanie, którego celem  jest pokazanie czytelnikowi w jaki sposób można, na poziomie ogólnym, zbudować prosty układ klasyfikujący obiekty.\footnote{Opracowane na podstawie: \citep[s. 11]{Kwiatkowski2007}} Układ ten będzie prostym klasyfikatorem binarnym, przydzielającym obiekty do dwóch niezależnych klas, a zasada jego działania będzie zbliżona, ale prostsza od zasady działania wspomnianego wyżej perceptronu.
+\\
+
+Ustalmy, że $u, v \in \mathbb{R}^{n}$:
+\begin{equation*}
+    u = \big[u_{1},\cdots,u_{n}\big] \qquad v = \big[v_{1},\cdots,v_{n}]
+\end{equation*}
+
+Niech $u$ i $v$ będą wyróżnionymi punktami przestrzeni $\mathbb{R}^{n}$. Zdefiniujmy na niej klasę $\bm{C}^{(1)}$ punktów w przestrzeni $R^{n}$ jako zbiór punktów położonych bliżej punktu $u$ niż $v$:
+
+\begin{equation}
+    \bm{C}^{(1)} = \bigg\{ x \in \mathbb{R}^{n} : \| x - u\| < \| x - v\| \bigg\} 
+\end{equation}
+
+Analogicznie określimy klasę $\bm{C}^{(2)}$ jako zbiór punktów bliższych punktowi $v$:
+
+\begin{equation}
+    \bm{C}^{(2)} = \bigg\{ x \in \mathbb{R}^{n} : \|x - v\| < \| x - u\| \bigg\}
+\end{equation}
+Punkty $\bm{u}$ i $\bm{v}$ rozumieć będziemy jako wzorce wartości cech odpowiednich obiektów. Przyporządkowanie badanego punktu $\bm{x}$ przestrzeni cech $\mathbb{R}^{n}$ do jednej z dwóch klas stanowi dość prosty przykład realizacji zadania rozpoznania obiektu.
+
+Kolejny krok polega na wyznaczeniu granic dla klas $\bm{C}^{(1)}$ i $\bm{C}^{(2)}$. 
+\\
+Niech:
+
+\begin{equation}
+\|{x - v}\| = \|{x- u}\|
+\end{equation}
+
+więc
+\begin{equation}
+    \big \langle x - v | x - v \big \rangle = \big \langle x - u | x - u \big \rangle.
+\end{equation}
+
+Zatem,
+
+\begin{equation*}
+    \big \langle x - v | x - v \big \rangle = \big \langle x - v |x \big \rangle - \big \langle x - v | v \big \rangle = \big \langle x | x \big \rangle - \big \langle x | v \big \rangle - \big \langle x | v \big \rangle + \big \langle v | v \big \rangle = \|x\|^{2} + \|v\|^{2} - 2 \big \langle x | v \big \rangle 
+\end{equation*}
+
+oraz
+\begin{equation*}
+    \big \langle x - u | x - u \big \rangle = \|x\|^{2} + \|u\|^{2} - 2 \big \langle x | u \big \rangle.
+\end{equation*}
+
+Stąd,
+\begin{equation}
+    \frac{1}{2} \big( \|v\|^{2} - \|u\|^{2} \big) = \big \langle x|v \big \rangle - \big \langle x|u \big \rangle = \big \langle x|v - u \big \rangle = \big \langle v - u|x \big \rangle.
+\end{equation}
+
+Niech $y = v - u$ oraz $w_{0} = \frac{1}{2} \bigg(\|v\|^{2} - \|u\|^{2}\bigg).$ 
+
+Wtedy:
+
+\begin{equation*}
+\bm{\big \langle y|x \big \rangle = w_{0}}.
+\end{equation*}
+
+Na tej podstawie możemy zdefiniować funkcje klasyfikującą:
+
+\begin{equation}
+f(x) =\left\{\begin{matrix}
+1, & dla  & \big \langle y|x \big \rangle > w_{0} \\ 
+-1,& dla & \big \langle y|x \big \rangle < w_{0}  
+\end{matrix}\right.
+\end{equation}
+
+Stąd,
+
+\begin{equation}
+\left\{\begin{matrix}
+x \in C_{1}, & dla  & f(x) = 1 \\ 
+x \in C_{2},& dla & f(x) = -1
+\end{matrix}\right.
+\end{equation}
+\\
+\begin{przyklad}
+Chcemy zaklasyfikować wektor $x$ do którejś z klas $C_{1}$ lub ${C_{2}}$.
+\\
+
+\begin{equation*}
+v = [1,2]  \qquad u =[3, -5] \qquad x = [2,4]
+\end{equation*}
+Otrzymujemy kolejno:
+\begin{equation}
+    y =  v - u = [1 - 3 , 2 -(-5)] = \textbf{[-2,7]}.
+\end{equation}
+\begin{align}
+       w_{0} = &  \frac{1}{2} \big(\|v\|^{2} - \|u\|^{2}\big)  \\ 
+        = &\frac{1}{2}((1 \cdot 1 + 2 \cdot 2) - (3 \cdot 3 + (-5) \cdot (-5))  \\
+        = & \frac{1}{2}((1 + 4) - (9 + 25))   \\
+       = &\frac{1}{2}(5 - 34) = \frac{1}{2} \cdot -29 = \textbf{-14,5}.
+    \end{align}
+
+
+Wtedy
+\begin{equation}
+    \big \langle y|x  \big \rangle = [-2,7] \cdot [2,4]
+    = [-2 \cdot 2 + 7 \cdot 4] = -4 + 28 = \textbf{24}.
+\end{equation}
+
+\begin{center}
+Jeśli $ \big \langle y|x \big \rangle > w_{0}$ (\textbf{24 > -14,5}), więc otrzymujemy 1.
+\end{center}
+
+Zatem z definicji funkcji $f(x) = 1$ wynika, że powinniśmy zaklasyfikować wektor $x$ do klasy $C_{1}$.
+\end{przyklad}

@@ -1,0 +1,32 @@
+
+% extra packages and definitions
+
+\usepackage{amsmath}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{systeme}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{bm}
+
+
+%Aksjomaty
+
+\newenvironment{axioms}
+ {\enumerate[label=\textbf{A\arabic*.}, ref=A\arabic*]}
+ {\endenumerate}
+\makeatletter
+\newcommand\varitem[1]{\item[\textbf{A\arabic{enumi}\rlap{$#1$}.}]%
+  \edef\@currentlabel{A\arabic{enumi}{$#1$}}}
+\makeatother
+
+
+
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+
+\graphicspath{{Grafika/}}

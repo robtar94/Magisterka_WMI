@@ -1,0 +1,330 @@
+\chapter{Obroty wektorów nut w przestrzeni trójwymiarowej}
+
+Wspomniane w poprzednim rozdziale macierze rotacji można wykorzystać do tworzenia muzyki.
+W zdefiniowanej w rozdziale pierwszym przestrzeni wektorowej nad ciałem $\mathbb{R}$ możemy rozważyć istnienie  wektorów wartości dźwiękowych (nut) oraz operacje na nich.
+Obrót każdego z takich wektorów $v$ gdzie $v \in V$ nad ciałem $\mathbb{R}$ przeprowadzimy za pomocą mnożenia przez macierze obrotu dla osi: $OX$, $OY$ oraz $OZ$. Obroty wektorów zostały zaimplementowane na dwa sposoby:
+\begin{enumerate}
+    \item Obroty akordów o kąt $5^{\circ}$ w przestrzeni $\mathbb{R}^{3}$,
+    \item Obroty wektora nut w przestrzeni $\mathbb{R}^{3}$, reprezentującego własnoręcznie skomponowany utwór w tonacji C-dur, kolejno o kąty $5^{\circ}$, $10^{\circ}$, $15^{\circ}$ oraz $20^{\circ}$ stopni.
+\end{enumerate}
+
+\section{Obroty akordów w \texorpdfstring{$\mathbb{R}^{3}$}{R3}}
+Na potrzeby eksperymentu przygotowano pogrupowane parami wektory od $v_{1}$ do $v_{4}$ następującej postaci:
+\begin{equation*}
+v_{1} =
+    \begin{bmatrix}
+     60 \\
+     64 \\
+     67
+    \end{bmatrix}
+    \quad
+    v_{2} =
+    \begin{bmatrix}
+     69 \\
+     61 \\
+     64
+    \end{bmatrix}
+    \quad
+    v_{3} =
+    \begin{bmatrix}
+     67 \\
+     71 \\
+     62
+    \end{bmatrix}
+    \quad
+    v_{4} =
+    \begin{bmatrix}
+     65 \\
+     69 \\
+     60
+    \end{bmatrix}
+\end{equation*}
+Następnie każdy z tych wektorów przemnożono przez macierze obrotu odpowiadające poszczególnym osiom $OX$, $OY$ oraz $OZ$ przestrzeni $\mathbb{R}^{3}$:
+
+\begin{equation*}
+R_{x}(\alpha) =
+    \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & \cos\alpha & -\sin\alpha \\
+    0 & \sin\alpha & \cos\alpha 
+    \end{bmatrix}
+    \end{equation*}
+    \\
+    \begin{equation*}
+    R_{y}(\beta) =
+    \begin{bmatrix}
+    \cos\beta & 0 & \sin\beta \\
+    0 & 1 & 0  \\
+    -\sin\beta & 0 & \cos\beta
+    \end{bmatrix}
+    \end{equation*}
+    \\
+    \begin{equation*}
+        R_{z}(\gamma) =
+        \begin{bmatrix}
+        \cos\gamma & -\sin\gamma & 0 \\
+        \sin\gamma & \cos\gamma  & 0 \\
+        0 & 0 & 1
+        \end{bmatrix}
+    \end{equation*}
+    Macierz całego obrotu w $\mathbb{R}^{3}$ wyznacza się poprzez pomnożenie wektora $v$ kolejno przez macierze poszczególnych osi, tj.
+    \begin{equation*}
+        R = R_{x}(\alpha) \cdot R_{y}(\beta) \cdot R_{z}(\gamma).
+    \end{equation*}
+gdzie kąt $\alpha$ odpowiada rotacji wokół osi $OX$, kąt $\beta$ odpowiada rotacji wokół osi $OY$, a kąt $\gamma$ odpowiada rotacji wokół osi $OZ$. W niniejszym eksperymencie wszystkie wektory obrócono o tę samą wartość, czyli kąt $5^{\circ}$.
+
+\section{Implementacja}
+\begin{lstlisting}[language = Haskell]
+type Vector = [Double]
+type Matrix = [[Double]]
+
+-- macierz obrotu
+mx p = [[1,0,0], [0, cos p, sin p], [0, -sin p, cos p]]
+my p = [[cos p, 0, - sin p], [0, 1, 0], [sin p, 0, cos p]]
+mz p = [[cos p, sin p, 0], [-sin p, cos p, 0], [0, 0, 1]]
+-- Dane
+-- v1 do v4 to akordy
+v1 :: Vector
+v1 = [60,64,67]
+v2 :: Vector
+v2 = [69,61,64]
+v3 :: Vector
+v3 = [67,71,62]
+v4 :: Vector
+v4 = [65,69,60]
+\end{lstlisting}
+Wyznaczenie macierzy całego obrotu w $\mathbb{R}^{3}$:
+\begin{lstlisting}[language = Haskell]
+-- macierze obrotu 3D
+mXY = mmult (mx 5) (my 5) 
+mXYZ = mmult (mXY) (mz 5) -- cala macierz obrotu o kat 5
+\end{lstlisting}
+
+Funkcja \textit{mmult} służy do mnożenia macierzowego i została zaimplementowana następująco:
+\begin{lstlisting}[language = Haskell]
+mmult :: Num a => [[a]] -> [[a]] -> [[a]]
+mmult a b  = [[sum $ zipWith (*) ar bc | bc <- (L.transpose b)] | ar <- a]
+\end{lstlisting}
+procedurę obracania wektorów zaimplementowano w poniższy sposób:
+\begin{lstlisting}[language = Haskell]
+wektor1 = do
+    toInt(concat(mmult (w1) mXYZ))
+    let nw1 = [80,37,66]
+    map pitch nw1
+\end{lstlisting}
+funkcja \textit{pitch} służy konwersji wartości liczbowych na wartości dźwiękowe.
+Następnie do każdego z wektorów dodano ćwierćnuty (qn) za pomocą następującego fragmentu kodu:
+\begin{lstlisting}[language = Haskell]
+--obrocony wektor 1
+rw1 :: [(PitchClass, Octave)]
+rw1 = [(Gs,5),(Cs,2),(Fs,4),(G,5),(G,1), (Cs, 5)]
+rw1_play :: Music Pitch
+rw1_play =  chord $ toMusicPitch qn (rw1)
+\end{lstlisting}
+Na koniec zaimplementowano monadę umożliwiającą odgrywanie parami oryginalnego akordu wraz z akordem obróconym:
+
+\begin{lstlisting}[language = Haskell]
+pierwsza_para :: Music Pitch
+pierwsza_para = akord1_music :+: rw1_play
+
+druga_para :: Music Pitch 
+druga_para = akord2_music :+: rw2_play
+
+trzecia_para :: Music Pitch 
+trzecia_para = akord3_music :+: rw3_play
+
+czwarta_para :: Music Pitch
+czwarta_para = akord4_music :+: rw4_play
+
+-- granie wszystkich par
+test :: IO ()
+test = do
+    putStrLn "pierwsza para"
+    play pierwsza_para
+    putStrLn "Druga para"
+    play druga_para
+    putStrLn "Trzecia Para"
+    play trzecia_para
+    putStrLn "Czwarta para"
+    play czwarta_para
+\end{lstlisting}
+    
+\section{Wyniki}
+Przez $v$ oznaczamy oryginalny wektor, a przez $v'$ wektor obrócony o kąt $\phi = 5^{\circ}$ w $\mathbb{R}^{3}$:
+
+\begin{equation*}
+v_{1} =
+    \begin{bmatrix}
+     60 \\
+     64 \\
+     67
+    \end{bmatrix}
+    \quad
+    v'_{1} =
+    \begin{bmatrix}
+     80 \\
+     37 \\
+     66
+    \end{bmatrix}
+\end{equation*}
+\quad
+\begin{equation*}
+    v_{2} =
+    \begin{bmatrix}
+     69 \\
+     61 \\
+     64
+    \end{bmatrix}
+    \quad
+    v'_{2} =
+    \begin{bmatrix}
+     92 \\
+     34 \\
+     55
+    \end{bmatrix}
+\end{equation*}
+\quad
+\begin{equation*}
+    v_{3} =
+    \begin{bmatrix}
+     67 \\
+     71 \\
+     62
+    \end{bmatrix}
+    \quad
+    v'_{3} =
+    \begin{bmatrix}
+     95 \\
+     42 \\
+     50
+    \end{bmatrix}
+\end{equation*}
+\quad
+\begin{equation*}
+    v_{4} =
+    \begin{bmatrix}
+     65 \\
+     69 \\
+     60
+    \end{bmatrix}
+    \quad
+    v'_{4} =
+    \begin{bmatrix}
+     93 \\
+     41 \\
+     48
+    \end{bmatrix}
+\end{equation*}
+
+
+\section{Wnioski}
+Wartości każdego z obróconych wektorów od $v_{1}$ do $v_{4}$ zawierają podobne wartości liczbowe co wektory oryginalnych akordów. Wynika z tego lepsza harmoniczność uzyskanych dźwięków  i ich większe podobieństwo do oryginalnych akordów. Taki efekt uzyskaliśmy dzięki obracaniu wektorów o małe wartości kąta $\phi$ w przypadku większych kątów np. kąta $90^{\circ}$ uzyskane dźwięki znacznie różniłyby się od oryginalnych, a przejście pomiędzy oryginałem, a nowo uzyskanym wektorem obróconym byłoby bardziej zauważalne, co odbiłoby się negatywnie na odczuciach estetycznych odbiorcy muzyki i harmonii samego dźwięku.
+
+\section{Obrót utworu muzycznego w \texorpdfstring{$\mathbb{R}^{3}$}{R3}}
+
+Jako podstawę utworu bazowego zdefiniowanego w Haskellu następujące tablice dźwięków. Każda z poniższych tablic zawiera 12 dźwięków:
+\begin{lstlisting}[language = Haskell]
+linia1 = [C, E, G, B, D, F, A, C, E, G, B, C] 
+linia2 = [C, F, A, D, G, C, F, B, E, A, D, G] 
+linia3 = [C, A, F, D, B, G, E, C, A, F, D, B]
+linia4 = [C, G, E, B, G, D, B, F, D, A, F, C] 
+\end{lstlisting}
+Następnie do każdej z tablic dołączono nuty. Funkcja \textit{pcToQN} dołącza ćwierćnuty, natomiast funkcja \textit{pcToHN} dołącza półnuty:
+\begin{lstlisting}[language = Haskell]
+part1 = map pcToHN (linia1)
+part2 =  map pcToQN (linia2)
+part3 = map pcToHN (linia3)
+part4 =  map pcToQN(linia4)
+\end{lstlisting}
+Ostatni krok to skonwertowanie takiego zapisu w formacie \textit{dźwięk -- długość} na typ muzyczny \textit{Music Pitch}, co umożliwi odgrywanie utworu. Umożliwia to konstruktor \textit{line \$}:
+\begin{lstlisting}[language = Haskell]
+part1_music = line $ part1
+part2_music = line $ part2
+part3_music = line $ part3
+part4_music = line $ part4
+\end{lstlisting}
+Mając skomponowany utwór, przystępujemy do jego obrotu w przestrzeni $\mathbb{R}^{3}$. W tym celu każda z linii melodycznych skonwertowaliśmy na wektory:
+\begin{lstlisting}[language = Haskell]
+v1 :: Vector
+v1 = [0,4,7,11,2,5,9,0,4,7,11,0]
+v2 :: Vector
+v2 =[0,5,9,2,7,0,5,11,4,9,2,7]
+v3 :: Vector
+v3 = [0,9,5,2,11,7,4,0,9,5,2,11]
+v4 :: Vector
+v4 =[0,7,4,11,7,2,11,5,2,9,5,0]
+\end{lstlisting}
+Dzięki temu można wykonać operacje przemnożenia poprzez macierze obrotu osi $OX$, $OY$ i $OZ$, analogiczne do przedstawionych wcześniej.
+Obrót zaimplementowano następująco:
+\begin{lstlisting}[language = Haskell]
+--obracanie wektorow
+wektor1 = do
+    toInt(concat(mmult (w1) mXYZ))
+    
+
+wektor2 = do
+    toInt(concat(mmult (w2) mXYZ))
+    
+wektor3 = do
+    toInt(concat(mmult (w3) mXYZ))
+    
+
+wektor4 = do
+    toInt(concat(mmult (w4) mXYZ))
+\end{lstlisting}
+
+Każdy pojedynczy obrót umożliwiał uzyskanie nowego wektora trójwymiarowego. Dla wektorów $v_{1}$, $v_{2}$, $v_{3}$ i $v_{4}$ przy przykładowym obrocie o kąt $\phi = 20^{\circ}$ uzyskaliśmy kolejno:
+\begin{equation*}
+v'_{1} =
+\begin{bmatrix}
+7 \\
+3 \\
+3
+\end{bmatrix}
+\quad
+v'_{2} =
+\begin{bmatrix}
+9 \\
+4 \\
+3
+\end{bmatrix}
+\quad
+v'_{3} =
+\begin{bmatrix}
+5 \\
+8 \\
+4
+\end{bmatrix}
+\quad
+v'_{4} =
+\begin{bmatrix}
+4 \\
+6 \\
+3
+\end{bmatrix}
+\end{equation*}
+W tej procedurze testowej każdy kolejny obrót wykonywaliśmy o inny kąt, chcąc sprawdzić, czy także tym razem uzyskany utwór wynikowy będzie podobny do oryginalnego.
+Składając wszystkie próby razem uzyskaliśmy utwór o długości 12 dźwięków, dokładnie tak jak w utworze oryginalnym:
+\begin{lstlisting}[language = Haskell]
+-- 1. Obrot o 5 stopni
+rotate1 = [8,1,1,10,1,1,9,5,2,7,3,2] --linia1
+-- 2. o 10 stopni
+rotate2 = [3,3,7,4,4,9,7,1,8,5,1,6] -- linia2
+-- 3. o 15 stopni
+rotate3 = [6,5,2,8,6,3,6,9,2,4,7,1] -- linia3
+-- 4. o 20 stopni 
+rotate4 = [7,3,3,9,4,3,5,8,4,4,6,3] --linia4
+\end{lstlisting}
+
+Następująca monada umożliwia odgrywanie utworu oryginalnego razem z obróconym:
+\begin{lstlisting}[language = Haskell]
+test :: IO ()
+test = do
+    putStrLn "pierwszy utwor" 
+    play utwor
+    putStrLn "Ten sam utwor, ale po obrocie"
+    play rotate_utwor
+\end{lstlisting}
+
+\section{Wnioski}
+Nowo uzyskany utwór zachował harmonie oryginalnego utworu, a uzyskane dźwięki wydają się podobne do oryginału. Wynika z tego następujący wniosek: Jeżeli obracamy utwór w przestrzeni nad ciałem $\mathbb{R}^{3}$, to podobnie jak w przypadku akordów należy to uczynić o małe wartości kątów, gdyż zwiększa to prawdopodobieństwo tego, że uzyskane dźwięki będą brzmieniowo zbliżone do oryginału. Nie musimy jednak  obracać utworu cały czas o ten sam kąt -- mogą to być inne wartości kątów o ile ich wartości nie są zbyt duże.
