@@ -1,6 +1,6 @@
 \chapter{Reprezentacja i klasyfikacja utworu muzycznego}
 
-Na rysunku 18 została przedstawiona gama chromatyczna rozpoczynająca się od dźwięku C:
+Na rysunku 4.1 została przedstawiona gama chromatyczna rozpoczynająca się od dźwięku C:
 \begin{figure}[H]
 \includegraphics[scale = 0.4]{chromatyczna.png}
 \centering
@@ -29,8 +29,8 @@ Stworzona w języku \textit{Haskell} biblioteka \textit{Euterpea}\footnote{https
 Prezentowany przeze mnie prosty program w języku Haskell dokonuje klasyfikacji dźwięków, wykorzystując przy tym fragmenty dwóch gotowych utworów muzycznych: 
 
 \begin{enumerate}
-    \item Pierwszy utwór \textit{Od Pilicy i Wolbroma} jest przedstawicielem muzyki ludowej i został udostępiony przez Instytut im. Oskara Kolberga (zob. Rysunek 18),
-    \item Utwór \textit{Simple Jazz} pobrany z serwisu MuseScore (zob. Rysunek 19).
+    \item Pierwszy utwór \textit{Od Pilicy i Wolbroma} jest przedstawicielem muzyki ludowej i został udostępiony przez Instytut im. Oskara Kolberga (zob. Rysunek 4.2),
+    \item Utwór \textit{Simple Jazz} pobrany z serwisu MuseScore (zob. Rysunek 4.3).
 \end{enumerate}
 
 
@@ -97,7 +97,7 @@ Klasyfikacje możemy przeprowadzić na dwa sposoby:
     \item Na podstawie mierzalnych cech, które opisują utwór muzyczny. W tym wypadku skupimy się na \textit{rytmie}.
 \end{itemize}
 
-\subsection{4.2 Klasyfikacja na podstawie podobieństwa dźwięków}
+\subsection{Klasyfikacja na podstawie podobieństwa dźwięków}
 Mając dane dwa wektory $v$ i $u$, sprawdźmy, czy wektor $x$ jest bardziej podobny do muzyki ludowej ($C_{1}$), reprezentowanej przez wektor $v$, czy do muzyki jazzowej ($C_{2}$), reprezentowanej przez $u$. 
 
 \begin{equation*}
@@ -114,7 +114,7 @@ v =
     \end{bmatrix}
 \end{equation*}
 
-Jako pierwszy przykład testowy wykorzystamy fragment utworu \textit{The Entertainer} (zob.rys. 21) który zakodowaliśmy jako wektor $x$:
+Jako pierwszy przykład testowy wykorzystamy fragment utworu \textit{The Entertainer} (zob.rys. 4.4) który zakodowaliśmy jako wektor $x$:
 \begin{equation*}
 x =
     \begin{bmatrix}
@@ -164,9 +164,9 @@ Jeśli, $\big \langle y|x \big \rangle < w_{0}$, to $f(x) = -1$, a to oznacza pr
 
 Klasyfikator uznał zatem, że dźwięki w wektorze $x$ są bardziej podobne do tych w wektorze $u$. Bluesowy utwór \textit{The Entertainer} został uznany za bardziej podobny do jazzu niż do muzyki ludowej, co raczej zgadza się z powszechną intuicją Ten sposób klasyfikacji nie jest optymalny, ponieważ pomija wszystkie inne cechy utworu, takie jak \textit{rytm}. W kolejnym podrozdziale pokażemy jak można rozwiązać ten problem i zamodelujemy klasyfikacje na podstawie rytmu.
 
-\section{Modelowanie binarne typu cisza - dźwięk}
+\subsection{Modelowanie binarne typu cisza - dźwięk}
 
-Sposobem na klasyfikacje utworów względem ich rytmu jest takie zamodelowanie wektora wejściowego nut, gdzie do każdej wartości dźwiękowej, (nie będącej pauzą), przyporządkowujemy wartość 1, a każdej wartości będącej pauzą przyporządkowujemy wartość 0. Przyporządkowanie to zawsze działa w taki sam sposób, niezależnie od tego jakiej długości jest dana nuta, czy pauza. Prosty przykład jak miałoby to wyglądać został przedstawiony na rys. 20.
+Sposobem na klasyfikacje utworów względem ich rytmu jest takie zamodelowanie wektora wejściowego nut, gdzie do każdej wartości dźwiękowej, (nie będącej pauzą), przyporządkowujemy wartość 1, a każdej wartości będącej pauzą przyporządkowujemy wartość 0. Przyporządkowanie to zawsze działa w taki sam sposób, niezależnie od tego jakiej długości jest dana nuta, czy pauza. Prosty przykład jak miałoby to wyglądać został przedstawiony na rys. 4.5.
 
 \begin{figure}[H]
 \includegraphics[scale = 0.5]{test.png}
@@ -224,7 +224,7 @@ Stąd:
 A to również oznacza przydział do klasy $C_{2}$.
 Zatem klasyfikując na podstawie rytmu program ponownie uznał, że bluesowy utwór \textit{The Entertainer} brzmi bardziej jazzowo niż ludowo.
 
-\subsection{4.4 Procedura testowa}
+\section{Procedura testowa}
 Na podstawie powyżej opisanych dwóch metod przeprowadzono testy dla większej ilości utworów. Przebieg procedury testowania był następujący:
 \begin{enumerate}
     \item Wygenerowanie losowego wektora $x$,
@@ -245,9 +245,9 @@ floatList (n:ns)  = (x) : floatList(ns)
     where x = fromIntegral n :: Float 
 \end{lstlisting}
 
-Testy przeprowadzono w dwóch wariantach. W wariancie pierwszym (A) porównywano wektor wzorcowy danego typu muzyki (ludowej bądź jazzowej), z innym utworem z tego samego gatunku muzyki. Przykłady zostały pobrane z seriwsu \textit{MuseScore} lub z \textit{Instytutu im. Oskara Kolberga}, odpowiednio 5 utworów muzyki ludowej lub jazzowej. W wariancie (B) wektory wzorcowe były porównywane z losowo wygenerowanym innym wektorem, żeby sprawdzić jakie decyzje podejmuje algorytm dla losowo wygenerowanych sekwencji dźwięków. 
+Testy przeprowadzono w dwóch wariantach. W wariancie pierwszym porównywano wektor wzorcowy danego typu muzyki (ludowej bądź jazzowej), z innym utworem z tego samego gatunku muzyki. Przykłady zostały pobrane z seriwsu \textit{MuseScore} lub z \textit{Instytutu im. Oskara Kolberga}, odpowiednio 5 utworów muzyki ludowej lub jazzowej. W wariancie drugim wektory wzorcowe były porównywane z losowo wygenerowanym innym wektorem, żeby sprawdzić jakie decyzje podejmuje algorytm dla losowo wygenerowanych sekwencji dźwięków. 
 
-\subsection{(A) Porównywanie utworu wzorcowego z innym utworem}
+\subsection{Porównywanie utworu wzorcowego z innym utworem}
 \FloatBarrier
 \begin{table}[h]
 \centering
@@ -313,7 +313,7 @@ Wyniki klasyfikacji na podstawie podobieństwa rytmu kształtują się następuj
 
 
 
-\subsection{(B) Porównywanie utworu wzorcowego z utworem losowym}
+\subsection{Porównywanie utworu wzorcowego z utworem losowym}
 
 Generowanie losowego wektora nut przeprowadzono za pomocą monady zaimplementowanej w następujący sposób:
 \begin{lstlisting}[language = Haskell]
@@ -358,7 +358,7 @@ Lp. & $X_{input}$ & $X_{output}$ \\ \hline
 \FloatBarrier
 
 \textbf{Podsumowanie:}
-Wyniki klasyfikacji na podstawie podobieństwa rytmu kształtują się następująco:
+Wyniki klasyfikacji na podstawie podobieństwa dźwięków kształtują się następująco:
 
 \begin{enumerate}
     \item Dla muzyki ludowej klasyfikator osiągnął 80\% dokładności (1 z 5 utworów zaklasyfikowano źle)

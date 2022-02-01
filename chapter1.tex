@@ -6,7 +6,7 @@ Pomimo długich badań fundamentalne pytania o samą istotę działania mózgu n
 
 Z inżynieryjnego punktu widzenia stworzenie inteligentnych układów powinno się opłacić, ponieważ maszyna byłaby zdolna wyręczyć człowieka w wykonywaniu różnych skomplikowanych prac. Powstanie \textit{sztucznych sieci neuronowych} było krokiem naprzód w realizacji tego przedsięwzięcia. Sieci takie mają niektóre właściwości mózgu człowieka. Posiadają zarówno zdolność do generalizacji (czyli do uogólniania nabytej wiedzy na nowe, nieznane przypadki), oraz zdolność do rozwiązywania zadań nieprecyzyjnie zdefiniowanych formalnie. Sieci takie mogą działać nawet przy pewnym poziomie uszkodzeń. Mają także stosunkowo duża prędkość przetwarzania informacji \citep[s. 15-16]{Kosinski2017}.
 
-Sztuczne sieci neuronowe mogą być realizowane na dwa sposoby. W postaci sprzętowej sieć jest specjalnie zaprojektowanym układem scalonym. Zaprojektowanie układu scalonego jest kosztowne, zatem stosuje się taką implementacje tylko dla modeli, których działanie zostało wcześniej potwierdzone. (zob. rys. 1) Innym rozwiązaniem jest realizacja sieci jako programu komputerowego. Jest to implementacja posiadająca dużą elastyczność, bardzo łatwo jest dokonać zmian w~architekturze samej sieci. Dlatego tez programy komputerowe wykorzystuje się głównie na etapie badań samego modelu sieci, kiedy skuteczność końcowa modelu nie została dokładnie zbadana i udowodniona \citep[s. 15]{Kosinski2017}.
+Sztuczne sieci neuronowe mogą być realizowane na dwa sposoby. W postaci sprzętowej sieć jest specjalnie zaprojektowanym układem scalonym. Zaprojektowanie układu scalonego jest kosztowne, zatem stosuje się taką implementacje tylko dla modeli, których działanie zostało wcześniej potwierdzone. (zob. rys. 1.1) Innym rozwiązaniem jest realizacja sieci jako programu komputerowego. Jest to implementacja posiadająca dużą elastyczność, bardzo łatwo jest dokonać zmian w~architekturze samej sieci. Dlatego tez programy komputerowe wykorzystuje się głównie na etapie badań samego modelu sieci, kiedy skuteczność końcowa modelu nie została dokładnie zbadana i udowodniona \citep[s. 15]{Kosinski2017}.
 
 \begin{figure}[H]
 \begin{center}
@@ -17,7 +17,7 @@ Sztuczne sieci neuronowe mogą być realizowane na dwa sposoby. W postaci sprzę
 \end{center}
 \end{figure}
 
-Jak do tej pory sztuczne sieci neuronowe wykorzystywano do realizacji wielu skomplikowanych zadań. Jednym z najważniejszych zastosowań jest wykorzystanie sztucznych sieci neuronowych do rozpoznawania obiektów występujących na obrazie. Mogą być to obrazy różnego rodzaju - na przykład tę przedstawiające pismo odręczne (zob. rys 2). Sieci neuronowe są również szeroko wykorzystywane do rozwiązywania różnego rodzaju problemów optymalizacyjnych czy do przewidywania ruchów inwestorów na giełdzie \citep[s. 15]{Kosinski2017}.
+Jak do tej pory sztuczne sieci neuronowe wykorzystywano do realizacji wielu skomplikowanych zadań. Jednym z najważniejszych zastosowań jest wykorzystanie sztucznych sieci neuronowych do rozpoznawania obiektów występujących na obrazie. Mogą być to obrazy różnego rodzaju - na przykład tę przedstawiające pismo odręczne (zob. rys 1.2). Sieci neuronowe są również szeroko wykorzystywane do rozwiązywania różnego rodzaju problemów optymalizacyjnych czy do przewidywania ruchów inwestorów na giełdzie \citep[s. 15]{Kosinski2017}.
 
 \begin{figure}[H]
 \begin{center}
@@ -27,7 +27,7 @@ Jak do tej pory sztuczne sieci neuronowe wykorzystywano do realizacji wielu skom
 \end{center}
 \end{figure}
 
-Sieci neuronowe -- zarówno te biologiczne jak ich sztuczne odpowiedniki -- są systemem złożonym. Mają one właściwości charakterystyczne dla sieci typu \textit{małego świata}. To znaczy, że najkrótsza droga $L$ między dwoma neuronami sieci jest stosunkowo krótka, a prawdopodobieństwo $P$ tego, że neuron ma $k$ sąsiednich neuronów, z którymi jest połączony jest wprost proporcjonalne do wartości $k^{-\Upsilon}$, gdzie stała wartość $2 < \Upsilon < 3$ -- zależy od architektury sieci neuronowej. Na rysunku 3 przedstawiono kilka przykładów takich architektur (Za: \citep[s. 15-16]{Kosinski2017}).
+Sieci neuronowe -- zarówno te biologiczne jak ich sztuczne odpowiedniki -- są systemem złożonym. Mają one właściwości charakterystyczne dla sieci typu \textit{małego świata}. To znaczy, że najkrótsza droga $L$ między dwoma neuronami sieci jest stosunkowo krótka, a prawdopodobieństwo $P$ tego, że neuron ma $k$ sąsiednich neuronów, z którymi jest połączony jest wprost proporcjonalne do wartości $k^{-\Upsilon}$, gdzie stała wartość $2 < \Upsilon < 3$ -- zależy od architektury sieci neuronowej. Na rysunku 1.3 przedstawiono kilka przykładów takich architektur (Za: \citep[s. 15-16]{Kosinski2017}).
 
 \begin{figure}[H]
 \includegraphics[width =\textwidth]{architektura.png}
@@ -62,7 +62,7 @@ Jeśli wyróżnione podzbiory tworzą podział przestrzeni cech (tzn. są rozł�
 
 \section{Model sztucznego neuronu}
 Jednym z najprostszych modeli sieci neuronowych jest \textbf{sztuczny neuron}. Pojedyncze sztuczne neurony to modele obliczeniowe, które zapoczątkowały rozwój uczenia maszynowego \citep[s. 39]{Raschka_2019}.
-Model sztucznego neuronu został zainspirowany -- jak nazwa wskazuje -- neuronem biologicznym, który został przedstawiony na rysunku 4.
+Model sztucznego neuronu został zainspirowany -- jak nazwa wskazuje -- neuronem biologicznym, który został przedstawiony na rysunku 1.4.
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{neuron.png}
@@ -71,7 +71,7 @@ Model sztucznego neuronu został zainspirowany -- jak nazwa wskazuje -- neuronem
 \end{center}
 \end{figure}
 
-Jedną z pierwszych prób formalnego zdefiniowania zasady działania neuronu biologicznego podjeli w roku 1943 \textit{McCulloch} i \textit{Pitts}. Zaproponowali oni pierwszy model sztucznego neuronu tzw. \textbf{Neuron McCullocha-Pittsa} (zob. Rys. 5).
+Jedną z pierwszych prób formalnego zdefiniowania zasady działania neuronu biologicznego podjeli w roku 1943 \textit{McCulloch} i \textit{Pitts}. Zaproponowali oni pierwszy model sztucznego neuronu tzw. \textbf{Neuron McCullocha-Pittsa} (zob. Rys. 1.5).
 
 McCulloch i Pitts opisali neuron jako bramkę logiczną zawierającą binarne wyjścia. Zasada działania tego modelu jest prosta: do neuronu dociera wiele sygnałów, które po integracji w ciele komórki generują sygnał na wyjściu, jeżeli zostanie przekroczona odgórnie ustalona wartość graniczna. Jeśli coś takiego nie będzie miało miejsca -- neuron nie wygeneruje odpowiedzi na wyjściu \citep[s. 40]{Raschka_2019}.
 \begin{figure}[H]
