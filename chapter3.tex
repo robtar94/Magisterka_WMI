@@ -2,7 +2,7 @@
 Zanim przejdziemy do omawiania poszczególnych części z jakich składa się utwór muzyczny. Należy wyjaśnić jedną zasadniczą kwestie - Muzyka istniała na tysiące lat zanim pojawiła się teoria ją opisująca.
 Koncepcje i reguły składające się na teorie muzyki są w zasadzie podobne do reguł jakie stosuje się w języku naturalnym. Podobnie jak opanowanie gramatyki, pozwala na swobodne prowadzenie konwersacji, tak opanowanie reguł tworzenia muzyki pozwala lepiej tworzyć własne kompozycje i czytać cudze \citep[s. 22]{Pilhofer2018}.
 
-Wiele osób uważa, że teoria muzyki powstała w starożytnej Grecji, ale pierwsze instrumenty muzyczne, zdaniem historyków, powstały już około 7000 lat p.n.e. W okresie formowania się pierwszych osad ludzkich, na długo przed Starożytną Grecją. Na niektórych replikach fletów z kości słoniowej, które powstały w tamtym okresie nadal da się tworzyć utwory muzyczne. Fakt ten nie umniejsza oczywiście osiągnięciom Greków - Pitagoras z Samos stworzył dwunastodźwiękową przypominająca tą, której muzycy używają współcześnie. Stworzył także pierwsze \textit{koło kwintowe}.\footnote{Jest to rodzaj schematów pozwalający opisać pokrewne tonacje poszczególnych dźwięków.} W istocie wkład starożytnych Greków w muzykę był na tyle znaczny, że przez dłuższy czas nie wprowadzano do niej żadnych znacznych modyfikacji \citep[s. 23]{Pilhofer2018}.
+Wiele osób uważa, że teoria muzyki powstała w starożytnej Grecji, ale pierwsze instrumenty muzyczne, zdaniem historyków, powstały już około 7000 lat p.n.e. W okresie formowania się pierwszych osad ludzkich, na długo przed Starożytną Grecją. Na niektórych replikach fletów z kości słoniowej, które powstały w tamtym okresie nadal da się tworzyć utwory muzyczne. Fakt ten nie umniejsza oczywiście osiągnięciom Greków - Pitagoras z Samos stworzył dwunastodźwiękową przypominająca tą, której muzycy używają współcześnie. Stworzył także pierwsze \textit{koło kwintowe}.\footnote{Jest to rodzaj schematu pozwalający opisać pokrewne tonacje poszczególnych dźwięków.} W istocie wkład starożytnych Greków w muzykę był na tyle znaczny, że przez dłuższy czas nie wprowadzano do niej żadnych znacznych modyfikacji \citep[s. 23]{Pilhofer2018}.
 
 \section{Podstawy teorii muzyki} 
 Wyjaśnienie podstaw teorii muzyki zaczniemy od jej części składowych: \textit{nut, pauz i tempa}.
@@ -93,7 +93,7 @@ Poza nutami, tempem i pauzą. Utwór muzyczny składa się także z \textit{inte
 \centering
 \end{figure}
 
-Zestaw następujących po sobie dźwięków, ułożonych w określonej kolejności, to \textit{skala muzyczna}. Najczęściej spotyka się skale \textit{minorową(molową)} i \textit{majorową(durową)} Utwory oparte na skali molowej często uważa się za mające smutne brzmienie. Natomiast utwory oparte o skale durową często uważa się za radosne. Na rysunku 3.9 przedstawiono jedną ze skal tak zwaną \textit{pentatonikę} \citep[s. 81 - 82]{Pilhofer2018}. 
+Zestaw następujących po sobie dźwięków, ułożonych w określonej kolejności, to \textit{skala muzyczna}. Najczęściej spotyka się skale \textit{minorową(molową)} i \textit{majorową(durową)} Utwory oparte na skali molowej często uważa się za mające smutne brzmienie. Natomiast utwory oparte o skale durową często uważa się za radosne. Na rysunku 3.9 przedstawiono jedną ze skal, tak zwaną \textit{pentatonikę} \citep[s. 81 - 82]{Pilhofer2018}. 
 
  \begin{figure}[H]
 \includegraphics[width=\textwidth]{pentatonika.png}
@@ -107,7 +107,7 @@ Zestaw następujących po sobie dźwięków, ułożonych w określonej kolejnoś
 Standard MIDI został stworzony w roku 1983 i znacznie ułatwił pracę z syntezatorami dźwięku. W czasach przed MIDI każdy syntezatorów należało indywidualnie zaprogramować \citep{MIDI}.
 
 W przeciwieństwie do innych formatów audio (jak .flac lub .wav) format MIDI sam w sobie nie przechowuje dźwięku, zawiera jedynie instrukcje jak dany dźwięk zrekonstruować, Jest swoistym rodzajem \textit{cyfrowej pięciolinii} \citep[s. 1 - 2]{MIDI_Format}.
-Protokół MIDI pozwala na wysłanie informacji przez maksymalnie 16 różnych kanałów, co pozwala na jednoczesną grę do 16 różnych instrumentów. Można powiedzieć, że standard MIDI specyfikuje zarówno wymagania wstępne względem typu urządzenia mającego odtwarzać dźwięk jak i sam protokół transmisji, podług którego mają być wysyłane wiadomości w standardzie MIDI. Struktura pliku MIDI została pokazana na rysunku 3.10 \citep[s. 1 - 2]{MIDI_Format}.
+Protokół MIDI pozwala na wysłanie informacji przez maksymalnie 16 różnych kanałów, co pozwala na jednoczesną grę do 16 różnych instrumentów. Można powiedzieć, że standard MIDI specyfikuje zarówno wymagania wstępne względem typu urządzenia mającego odtwarzać dźwięk jak i sam protokół transmisji, według którego mają być wysyłane wiadomości w standardzie MIDI. Struktura pliku MIDI została pokazana na rysunku 3.10 \citep[s. 1 - 2]{MIDI_Format}.
 
 \begin{figure}[H]\includegraphics[scale=0.6]{MIDI_file.png}
 \centering
@@ -115,11 +115,11 @@ Protokół MIDI pozwala na wysłanie informacji przez maksymalnie 16 różnych k
 \end{figure}
 
 Aby skorzystać z możliwości jakie daje nam MIDI należy zaopatrzyć się w instrumenty. Instrumenty mogą być dystrybuowane niezależnie jako pakiety \textit{VSTi} dołączane oddzielnie do \textit{syntezatora programowego} takiego jak \textit{Helm} (zob. rys. 3.11)
-Do tworzenia muzyki w formacie MIDI można wykorzystać także \textit{syntezator sprzętowy} taki jak \textit{klawiatura MIDI} Klawiatura jest rodzajem kontrolera wysyłającego sygnały elektryczne w formacie MIDI, które sam protokół interpretuje i odtwarza jako dźwięk. Przykład takiej klawiatury to rysunek 3.12. warto zwrócić uwagę na to, że każdej nucie na klawiaturze przyporządkowany jest odpowiadający mu numer kodu formatu MIDI.
+Do tworzenia muzyki w formacie MIDI można wykorzystać także \textit{syntezator sprzętowy} taki jak \textit{klawiatura MIDI}. Klawiatura MIDI jest rodzajem kontrolera wysyłającego sygnały elektryczne w formacie MIDI, które sam protokół interpretuje i odtwarza jako dźwięk. Przykład takiej klawiatury to rysunek 3.12. warto zwrócić uwagę na to, że każdej nucie na klawiaturze przyporządkowany jest odpowiadający mu numer kodu formatu MIDI.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.35]{helm.png}
+\includegraphics[scale = 0.3]{helm.png}
 \centering
 \caption{Interfejs programu Helm. Źródło: https://tytel.org/helm/}
 \end{figure}

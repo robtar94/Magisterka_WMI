@@ -950,9 +950,9 @@
 \renewcommand{\headrulewidth}{0pt}
 
 \fancyhf{}
-\fancyhead[R]{\small\leftmark}
+\fancyhead[RE]{\small\leftmark}
 \fancyhead[LO]{\small\rightmark}
-\fancyhead[L,RO]{\small\thepage}
+\fancyhead[LE,RO]{\small\thepage}
 
 \pagestyle{fancy}
 
