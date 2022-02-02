@@ -1,4 +1,4 @@
-\chapter{Elementarne wiadomości o sieciach neuronowych}
+\chapter{Wprowadzenie w świat sieci neuronowych}
 
 W ciągu ostatnich dekad obserwuje się rozwój badań nad sztucznymi sieciami neuronowymi. Badania te są prowadzone przez naukowców z różnych dziedzin, a ich rozwój jest motywowany osiągnięciami w zakresie badania mózgu człowieka. Obecnie odkryto wiele tajemnic działania mózgu. Wiadomo na przykład jaka jest budowa komórek nerwowych (neuronów) albo w jaki sposób wymieniają one informacje między sobą \citep[s. 13]{Kosinski2017}.
 
@@ -41,11 +41,11 @@ P(k)\textasciitilde $k^{-\Upsilon}$. \\ gdzie $\Upsilon$ jest parametrem właśc
 
 \clearpage
 \section{Poznanie a rozpoznanie}
-Problem automatycznego rozpoznawania obiektów będę tutaj rozpatrywać bazując na idei podziału przestrzeni wyników na rozłączne zbiory (klasy). Wyróżnione zbiory powinny określać wartości wyników obserwacji właściwe poszczególnym obiektom badanego zbioru. \textit{Wynik obserwacji} przedstawia zaobserwowane lub zmierzone wartości cech danego obiektu \citep[s. 7]{Kwiatkowski2007}.
+W mojej pracy magisterskiej będę skupiał się na problemie automatycznego rozpoznawania obiektów, w szczególności obiektów muzycznych, takich jak \textit{nuty}. Rozpoznanie to będzie  bazowało na idei podziału pewnej n-wymiarowej przestrzeni wyników na pewne rozłączne zbiory (klasy). Wyróżnione zbiory mają pewne cechy tożsame z pojedynczymi obiektami składającymi się na badany zbiór. Przez \textit{wynik obserwacji} rozumiem zaobserwowane lub zmierzone wartości cech danego obiektu w obrębie badanego zbioru \citep[s. 7]{Kwiatkowski2007}.
 
-Przez \textit{przestrzeń wyników obserwacji} rozumiemy to samo co pod przestrzenią cech obiektu. Wynik obserwacji stanowi formalnie punkt przestrzeni cech.\footnote{Zakładamy tutaj, że badany przez nas wzór obiekt jest reprezentowany poprzez wektor liczb zwany wartościami cech. Przestrzeń na płaszczyźnie która zawiera wektory cech badanego obiektu nazywamy właśnie przestrzenią cech.} \textit{Rozpoznanie obiektu} polega zatem na obserwacji (pomiarze wartości) cech obiektu i~sprawdzeniu do której klasy w przestrzeni cech zaobserwowany wynik należy. Taki sposób wnioskowania jest charakterystyczny dla zadania \textit{klasyfikacji} \citep[s. 7]{Kwiatkowski2007}.
+Przez \textit{przestrzeń wyników obserwacji} rozumiem to samo co pod przestrzenią cech obiektu. Wynik obserwacji stanowi formalnie punkt przestrzeni cech.\footnote{Zakładam tutaj, że badany obiekt jest reprezentowany poprzez wektor liczb zwany wartościami cech. Przestrzeń na płaszczyźnie która zawiera wektory cech badanego obiektu nazywam właśnie przestrzenią cech obiektu.} \textit{Rozpoznanie obiektu} polega zatem na obserwacji (pomiarze wartości) mierzalnych cech obiektu i~sprawdzeniu do której klasy w danej przestrzeni cech zaobserwowany wynik należy. Taki sposób wnioskowania jest charakterystyczny dla zadania \textit{klasyfikacji} \citep[s. 7]{Kwiatkowski2007}.
 
-Podstawowym problemem jest sposób, w jaki dokonamy tego podziału przestrzeni na podstawie dostępnych danych. Kluczem do uzyskania satysfakcjonujących wyników może być sformułowanie we właściwy sposób zadania aproksymacji. Dzięki temu możliwe staje się wykorzystanie metody najmniejszych kwadratów do rekurencyjnego uzyskiwania rozwiązań. Taki sposób postępowania leży u podstaw działania sztucznych sieci neuronowych. Na bazie tego typu sieci zadania poznawania (uczenia się) i rozpoznawania uzyskują naturalną interpretacje \citep[s. 7-8]{Kwiatkowski2007}.
+Podstawowym problemem jest sposób, w jaki dokonuje się podziału przestrzeni cech na podstawie dostępnych danych. Kluczem do uzyskania satysfakcjonujących wyników może być sformułowanie we właściwy sposób zadania aproksymacji. Dzięki temu możliwe staje się wykorzystanie metody najmniejszych kwadratów do rekurencyjnego uzyskiwania rozwiązań. Taki sposób postępowania leży u podstaw działania sztucznych sieci neuronowych \citep[s. 7-8]{Kwiatkowski2007}.
 
 Ujmując problem bardziej ściśle, poprzez rozpoznanie rozumiem wyróżnienie przedmiotu spośród innych występujących w analizowanym zbiorze obiektów. Poznanie zwykle oznacza zdobywanie wiedzy o czymś, nauczenie się czegoś na podstawie doświadczenia. Proces poznawania będę tutaj utożsamiać z uczeniem się.
 Wyróżniamy dwa sposoby uczenia się:
@@ -58,7 +58,7 @@ Wyróżniamy dwa sposoby uczenia się:
 Uczenie z nauczycielem polega na wstępnym określeniu cech charakterystycznych dla każdego badanego obiektu: nauczyciel przedstawia wynik obserwacji cech wraz z określeniem właściwego rodzaju obiektu (właściwego wyniku klasyfikacji obiektu). Nauczenie polega na określeniu w przestrzeni cech zbioru wartości właściwych danego obiektu. Rezultatem uczenia jest określenie podzbiorów przestrzeni cech charakteryzujących poszczególne obiekty \citep[s. 8]{Kwiatkowski2007}.
 
 Sposób drugi polega na grupowaniu tych obserwacji, które powodują taką samą reakcje programu dokonującego klasyfikacji. Należy zaznaczyć, że nie zawsze dochodzi tutaj do znalezienia relacji przyczynowo-skutkowej -- często obserwacje są kojarzone w jedną grupę na podstawie innych, często nieintuicyjnych cech obiektów.
-Jeśli wyróżnione podzbiory tworzą podział przestrzeni cech (tzn. są rozłączne i wyczerpują całą badaną przestrzeń), to dzięki uzyskaniu odpowiednich klas abstrakcji (grup) możemy zdefiniować nowe obiekty w taki sposób, że każda z dostępnych klas definiuje obiekt \citep[s. 8-9]{Kwiatkowski2007}.
+Jeśli wyróżnione podzbiory tworzą podział przestrzeni cech (tzn. są rozłączne i wyczerpują całą badaną przestrzeń), to dzięki uzyskaniu odpowiednich klas abstrakcji (grup) można zdefiniować nowe obiekty w taki sposób, że każda z dostępnych klas pośrednio definiuje obiekt \citep[s. 8-9]{Kwiatkowski2007}.
 
 \section{Model sztucznego neuronu}
 Jednym z najprostszych modeli sieci neuronowych jest \textbf{sztuczny neuron}. Pojedyncze sztuczne neurony to modele obliczeniowe, które zapoczątkowały rozwój uczenia maszynowego \citep[s. 39]{Raschka_2019}.
@@ -71,13 +71,13 @@ Model sztucznego neuronu został zainspirowany -- jak nazwa wskazuje -- neuronem
 \end{center}
 \end{figure}
 
-Jedną z pierwszych prób formalnego zdefiniowania zasady działania neuronu biologicznego podjeli w roku 1943 \textit{McCulloch} i \textit{Pitts}. Zaproponowali oni pierwszy model sztucznego neuronu tzw. \textbf{Neuron McCullocha-Pittsa} (zob. Rys. 1.5).
+Jedną z pierwszych prób formalnego zdefiniowania zasady działania neuronu biologicznego podjęli w roku 1943 \textit{McCulloch} i \textit{Pitts}. Zaproponowali oni pierwszy model sztucznego neuronu tzw. \textbf{Neuron McCullocha-Pittsa} (zob. Rys. 1.5).
 
 McCulloch i Pitts opisali neuron jako bramkę logiczną zawierającą binarne wyjścia. Zasada działania tego modelu jest prosta: do neuronu dociera wiele sygnałów, które po integracji w ciele komórki generują sygnał na wyjściu, jeżeli zostanie przekroczona odgórnie ustalona wartość graniczna. Jeśli coś takiego nie będzie miało miejsca -- neuron nie wygeneruje odpowiedzi na wyjściu \citep[s. 40]{Raschka_2019}.
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{Pitts.png}
-\caption{Model neuronu McCullocha-Pittsa. Jeśli wartość sumy ważonej przekroczy wartośc progową funkcji aktywacji, to zostanie wygenerowana odpowiedź neuronu na wyjściu komórki. Źródło: \href{https://pl.wikipedia.org/wiki/Neuron_McCullocha-Pittsa}{Wikipedia}}
+\caption{Model neuronu McCullocha-Pittsa. Jeśli wartość sumy ważonej przekroczy wartość progową funkcji aktywacji, to zostanie wygenerowana odpowiedź neuronu na wyjściu komórki. Źródło: \href{https://pl.wikipedia.org/wiki/Neuron_McCullocha-Pittsa}{Wikipedia}}
 \centering
 \end{center}
 \end{figure}
@@ -85,4 +85,4 @@ Innym przykładem jest \textbf{Perceptron Rosenblatta}. Frank Rosenblatt zapropo
 
 \section{Cel pracy}
 
-Celem pracy nie jest opis konkretnej implementacji sieci neuronowej ani zaprojektowanie takiej sieci od podstaw. Celem, który zamierzamy zrealizować w niniejszej pracy jest  zastosowanie pewnych cech i funkcji typowych dla sieci neuronowej do realizacji zadania kompozycji dzieła muzycznego. Sieć neuronowa jest mechanizmem opracowanym do rozpoznawania pewnych wzorców w danych i podejmowaniu na ich podstawie konkretnych decyzji lub tylko sugerowaniu pewnych rozwiązań właściwym decydentom. Te właściwość sieci zamierzamy właśnie wykorzystać. Planujemy zbudować system, który właściwie rozpozna cechy dzieła muzycznego i będzie w stanie je uogólnić do rozpoznawania ich  w szerszej klasie przykładów (zadanie klasyfikacji). Dodatkowo chcemy aby system dysponował zdolnością do tworzenia nowego utworu muzycznego na podstawie gotowego przykładu (zadanie generowania muzyki). Do realizacji tego zadania skorzystamy z pewnych cech, które zwyczajowo w literaturze przypisuje się właśnie sztucznym sieciom neuronowym.   
+Celem pracy nie jest opis konkretnej implementacji sieci neuronowej ani zaprojektowanie takiej sieci od podstaw. Celem, który zamierzam zrealizować w niniejszej pracy jest  zastosowanie pewnych cech i funkcji typowych dla sieci neuronowej do realizacji zadania kompozycji dzieła muzycznego. Sieć neuronowa jest mechanizmem opracowanym do rozpoznawania pewnych wzorców w danych i podejmowaniu na ich podstawie konkretnych decyzji lub tylko sugerowaniu pewnych rozwiązań właściwym decydentom. Te właściwość sieci zamierzam właśnie wykorzystać. Planuję zbudować system, który właściwie rozpozna niektóre  cechy dzieła muzycznego i będzie w stanie je uogólnić do rozpoznawania ich  w szerszej klasie przykładów (zadanie klasyfikacji). Dodatkowo chcę, żeby system dysponował zdolnością do tworzenia nowego utworu muzycznego na podstawie gotowego przykładu (zadanie generowania muzyki). Do realizacji tego zadania skorzystam z cech, które zwyczajowo w literaturze przypisuje się właśnie sztucznym sieciom neuronowym.   

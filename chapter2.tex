@@ -1,4 +1,4 @@
-\chapter{Podstawy aparatu matematycznego algebry liniowej}
+\chapter{Podstawy matematyczne}
 
 Nasze rozważania na temat modelowania dzieła muzycznego należy rozpocząć od zdefiniowania problemu w sposób formalny i wprowadzeniu podstawowych pojęć z zakresu niezbędnego aparatu matematycznego używanego do opisu i projektowania sieci neuronowych oraz do wprowadzenia pewnych podstawowych pojęć z zakresu teorii muzyki, których zdefiniowanie jest konieczne w celu prowadzenia dalszych rozważań. Realizacji tych dwóch zadań są poświęcone następne dwa rozdziały niniejszej pracy.
 
@@ -163,9 +163,12 @@ więc
 
 Zatem,
 
-\begin{equation*}
-    \big \langle x - v | x - v \big \rangle = \big \langle x - v |x \big \rangle - \big \langle x - v | v \big \rangle = \big \langle x | x \big \rangle - \big \langle x | v \big \rangle - \big \langle x | v \big \rangle + \big \langle v | v \big \rangle = \|x\|^{2} + \|v\|^{2} - 2 \big \langle x | v \big \rangle 
-\end{equation*}
+\begin{align}
+    & \big \langle x - v | x - v \big \rangle \\  = &  
+    \big \langle x - v |x \big \rangle - \big \langle x - v | v \big \rangle \\ =   
+    & \big \langle x | x \big \rangle - \big \langle x | v \big \rangle - \big \langle x | v \big \rangle + \big \langle v | v \big \rangle \\ = &
+      \|x\|^{2} + \|v\|^{2} - 2 \big \langle x | v \big \rangle. 
+\end{align}
 
 oraz
 \begin{equation*}
